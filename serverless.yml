@@ -1,0 +1,17 @@
+service: slack-messenger
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: ruby2.7
+  profile: personal
+  region: us-east-1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /hello
+          method: get
