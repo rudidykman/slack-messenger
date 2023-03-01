@@ -10,8 +10,8 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: lib/handler.alert
     events:
-      - httpApi:
-          path: /hello
-          method: get
+      - http:
+          path: alert
+          method: post
