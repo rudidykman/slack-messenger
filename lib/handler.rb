@@ -8,9 +8,7 @@ def alert(event:, context:)
   unless body['Type'] == 'SpamNotification'
     return {
       statusCode: 400,
-      body: {
-        message: 'Alerts are only sent for spam notifications.'
-      }.to_json
+      body: { message: 'Alerts are only sent for spam notifications.' }.to_json
     }
   end
 
@@ -20,8 +18,6 @@ rescue StandardError => e
   puts e
   {
     statusCode: 500,
-    body: {
-      message: 'An internal error ocurred.'
-    }.to_json
+    body: { message: 'An internal error ocurred.' }.to_json
   }
 end

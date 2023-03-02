@@ -9,7 +9,7 @@ class SpamNotification
   end
 
   def send_alert
-    message = "Spam report received for email #{@email}. Description: '#{@description}'."
+    message = "Spam report received for email #{@email}. Description: '#{@description}'"
     SlackApi.new.send_message(message)
   end
 end
