@@ -40,3 +40,10 @@ Next, I had to choose the language that I wanted to write the function in. In my
 wanted to showcase my Ruby experience, and I wanted to gain something personally from the project, so I was happy to sharpen my Ruby skills again. It's also very quick to get a new codebase off the ground using Ruby, which is a good fit for this project. I had a lot of fun working with Ruby!
 
 The layout off the codebase itself is very straightforward, as there is not a lot of complexity in the task itself. I decided to create a Slack API helper class to contain the integration with Slack, and then I added a Spam Notification class to contain the business logic (of which there ended up being very little, only formatting the text required for the Slack message using the incoming spam notification data).
+
+## What I would do next
+
+If I had no time limit on this project, these are the next things that I would look at:
+- I would like to refactor the `get` and `post` methods in the `SlackApi` class to be more consistent.
+- I would look at adding more information to the Slack message and format it nicely (only if additional info would add additional value, I don't want to create unnecessary noise).
+- I would like to add proper unit tests.

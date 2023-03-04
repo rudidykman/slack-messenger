@@ -14,6 +14,6 @@ task :invoke do
 end
 
 task :channel_id, [:channel_name] do |_task, args|
-   channel = SlackApi.new.channels.find { |c| c['name'] == args[:channel_name] }
-   puts channel['id']
+  channel = SlackApi.new.channels.find { |c| c['name'] == args[:channel_name] }
+  puts channel['id']
 end
