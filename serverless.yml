@@ -9,7 +9,7 @@ provider:
   region: us-east-1
 
 functions:
-  hello:
+  alert:
     handler: lib/handler.alert
     events:
       - http:
