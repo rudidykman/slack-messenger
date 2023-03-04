@@ -3,12 +3,14 @@
 require_relative './spam_notification'
 require 'json'
 
-def alert(event:, context:)
+SPAM_NOTIFICATION_TYPE = 'SpamNotification'
+
+def handler(event:, context:)
   body = JSON.parse(event['body'])
-  unless body['Type'] == 'SpamNotification'
+  unless body['Type'] == SPAM_NOTIFICATION_TYPE
     return {
       statusCode: 400,
-      body: { message: 'Alerts are only sent for spam notifications.' }.to_json
+      body: { message: "Alerts are only sent reports of type '#{SPAM_NOTIFICATION_TYPE}'." }.to_json
     }
   end
 

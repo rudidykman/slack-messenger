@@ -16,7 +16,7 @@ class SlackApi
     post('chat.postMessage', { channel: channel_id, text: message })
   end
 
-  def get_channels
+  def channels
     get('conversations.list')['channels']
   end
 

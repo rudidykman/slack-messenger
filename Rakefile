@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'lib/handler'
-require_relative 'lib/helpers'
+require_relative 'lib/slack_api'
 
 task :test do
   ENV['RUBY_ENV'] = 'test'
@@ -10,9 +10,10 @@ end
 
 task :invoke do
   payload = File.open('payload.json').read
-  alert(event: { 'body' => payload }, context: {})
+  handler(event: { 'body' => payload }, context: {})
 end
 
-task :get_channel_id, [:channel_name] do |task, args|
-  get_channel_id(args[:channel_name])
+task :channel_id, [:channel_name] do |_task, args|
+   channel = SlackApi.new.channels.find { |c| c['name'] == args[:channel_name] }
+   puts channel['id']
 end

@@ -10,10 +10,10 @@ provider:
 
 functions:
   alert:
-    handler: lib/handler.alert
+    handler: lib/handler.handler
     events:
       - http:
-          path: alert
+          path: spam-notification
           method: post
     environment:
       SLACK_TOKEN: ${env:SLACK_TOKEN}
