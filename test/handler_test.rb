@@ -16,8 +16,27 @@ class TestHandler < Test::Unit::TestCase
   end
 
   def test_hard_bounce
-    response = handler(event: { 'body' => { Type: 'HardBounce' }.to_json }, context: {})
+    hard_bounce_notification = {
+      Type: 'HardBounce',
+      Description: 'The server was unable to deliver your message (ex: unknown user, mailbox not found).',
+      Email: 'arthur@example.com'
+    }.to_json
+    response = handler(event: { 'body' => hard_bounce_notification }, context: {})
     assert_equal 400, response[:statusCode]
     assert_match("Alerts are only sent reports of type '#{SPAM_NOTIFICATION_TYPE}'.", response[:body])
+  end
+
+  def test_no_body
+    response = handler(event: {}, context: {})
+    assert_equal 400, response[:statusCode]
+  end
+
+  def test_missing_parameter
+    partial_body = {
+      Type: 'SpamNotification',
+      Email: 'zaphod@example.com'
+    }.to_json
+    response = handler(event: { 'body' => partial_body }, context: {})
+    assert_equal 400, response[:statusCode]
   end
 end

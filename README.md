@@ -29,9 +29,22 @@ sls deploy
 ```
 The above command will return a URL that can be used to trigger the slack notification.
 
-A deployed version is available at `https://rm9n3v1o3i.execute-api.us-east-1.amazonaws.com/dev/spam-notification`, which will send the alert to my personal Slack workspace, and can be triggered by
+A deployed version is available at `slack-messenger.rudidykman.co.za`, which will send the alert to my personal Slack workspace, and can be triggered by
 ```
-curl -X POST -d '{ "Type": "SpamNotification", "Email": "zaphod@example.com", "Description": "From AWS" }' https://rm9n3v1o3i.execute-api.us-east-1.amazonaws.com/dev/spam-notification
+curl -X POST https://slack-messenger.rudidykman.co.za/spam-notifications \
+-d \
+'{
+  "RecordType": "Bounce",
+  "Type": "SpamNotification",
+  "TypeCode": 512,
+  "Name": "Spam notification",
+  "Tag": "",
+  "MessageStream": "outbound",
+  "Description": "The message was delivered, but was either blocked by the user, or classified as spam, bulk mail, or had rejected content.",
+  "Email": "zaphod@example.com",
+  "From": "notifications@honeybadger.io",
+  "BouncedAt": "2023-02-27T21:41:30Z"
+}'
 ```
 
 ## Design decisions

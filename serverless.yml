@@ -13,7 +13,7 @@ functions:
     handler: lib/handler.handler
     events:
       - http:
-          path: spam-notification
+          path: spam-notifications
           method: post
     environment:
       SLACK_TOKEN: ${env:SLACK_TOKEN}

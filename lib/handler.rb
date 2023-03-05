@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
+require_relative './validation'
 require_relative './spam_notification'
 require 'json'
 
-SPAM_NOTIFICATION_TYPE = 'SpamNotification'
-
 def handler(event:, context:)
-  body = JSON.parse(event['body'])
-  unless body['Type'] == SPAM_NOTIFICATION_TYPE
-    return {
-      statusCode: 400,
-      body: { message: "Alerts are only sent reports of type '#{SPAM_NOTIFICATION_TYPE}'." }.to_json
-    }
-  end
+  body = JSON.parse(event['body'] || '{}')
+  validate_request_body(body)
 
   SpamNotification.new(body['Description'], body['Email']).send_alert
   { statusCode: 200 }
+rescue InvalidRequestError => e
+  return {
+    statusCode: 400,
+    body: { message: e.message }.to_json
+  }
 rescue StandardError => e
   puts e
   {
