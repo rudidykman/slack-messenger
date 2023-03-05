@@ -63,4 +63,4 @@ The layout off the codebase itself is very straightforward, as there is not a lo
 If I had no time limit on this project, these are the next things that I would look at:
 - I would like to refactor the `get` and `post` methods in the `SlackApi` class to be more consistent.
 - I would look at adding more information to the Slack message and format it nicely (only if additional info would add additional value, I don't want to create unnecessary noise).
-- I would like to add proper unit tests.
+- I would look into a way to run the app as an HTTP server locally.
