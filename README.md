@@ -27,8 +27,12 @@ Once you have serverless installed, it's as easy as setting `DEPLOYMENT_AWS_PROF
 ```
 sls deploy
 ```
+The above command will return a URL that can be used to trigger the slack notification.
 
-<!-- The app is available at `https://slack-messenger.rudidykman.co.za/dev/spam-notification`, but that will send the alert to my personal Slack workspace. -->
+A deployed version is available at `https://rm9n3v1o3i.execute-api.us-east-1.amazonaws.com/dev/spam-notification`, which will send the alert to my personal Slack workspace, and can be triggered by
+```
+curl -X POST -d '{ "Type": "SpamNotification", "Email": "zaphod@example.com", "Description": "From AWS" }' https://rm9n3v1o3i.execute-api.us-east-1.amazonaws.com/dev/spam-notification
+```
 
 ## Design decisions
 
