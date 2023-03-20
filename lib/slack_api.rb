@@ -10,10 +10,16 @@ class SlackApi
     @token = ENV['SLACK_TOKEN']
   end
 
-  def send_message(message, channel_id = ENV['SLACK_CHANNEL_ID'])
+  def send_message(message:, username:, channel_id: ENV['SLACK_CHANNEL_ID'])
     return puts 'Sending simulated Slack message...' if ENV['RUBY_ENV'] == 'test'
-
-    post('chat.postMessage', { channel: channel_id, text: message })
+    post(
+      endpoint: 'chat.postMessage',
+      body: {
+        channel: channel_id,
+        text: message,
+        username: username
+      }
+    )
   end
 
   def channels
@@ -22,7 +28,7 @@ class SlackApi
 
   private
 
-  def post(endpoint, body)
+  def post(endpoint:, body:)
     uri = URI.parse("#{@base_uri}/#{endpoint}")
     headers = {
       'Authorization': "Bearer #{@token}",

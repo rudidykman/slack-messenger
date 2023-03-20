@@ -10,11 +10,12 @@ provider:
 
 functions:
   alert:
-    handler: lib/handler.handler
+    handler: lib/handler.post_notifications
     events:
       - http:
-          path: spam-notifications
+          path: notifications
           method: post
     environment:
+      TOKEN: ${env:TOKEN}
       SLACK_TOKEN: ${env:SLACK_TOKEN}
       SLACK_CHANNEL_ID: ${env:SLACK_CHANNEL_ID}
