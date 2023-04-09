@@ -2,8 +2,22 @@
 
 require_relative './errors'
 
-def authorize(headers)
-  raise UnauthorizedError unless headers['Authorization'] == "Bearer #{ENV['TOKEN']}"
+def authorize_request(event)
+  effect = event['authorizationToken'] == "Bearer #{ENV['TOKEN']}" ? 'Allow' : 'Deny'
+
+  {
+    principalId: 'PostNotification',
+    policyDocument: {
+      Version: '2012-10-17',
+      Statement: [
+        {
+          Action: 'execute-api:Invoke',
+          Effect: effect,
+          Resource: event['methodArn']
+        }
+      ]
+    }
+  }
 end
 
 def validate_request_body(body)

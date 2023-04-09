@@ -14,7 +14,6 @@ task :invoke do
   response = post_notifications(
     event: {
       'body' => payload,
-      'headers' => { 'Authorization' => "Bearer #{ENV['TOKEN']}" }.to_json
     },
     context: {}
   )
