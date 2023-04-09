@@ -26,7 +26,7 @@ class TestHandler < Test::Unit::TestCase
   def test_success
     response = post_notifications(
       event: {
-        'body' => { message: 'Test' }.to_json,
+        'body' => { message: 'Test' }.to_json
       },
       context: {}
     )
@@ -44,7 +44,7 @@ class TestHandler < Test::Unit::TestCase
   def test_missing_required_field
     response = post_notifications(
       event: {
-        'body' => { from_name: 'Test' }.to_json,
+        'body' => { from_name: 'Test' }.to_json
       },
       context: {}
     )
@@ -54,7 +54,7 @@ class TestHandler < Test::Unit::TestCase
   def test_contains_invalid_field
     response = post_notifications(
       event: {
-        'body' => { message: 'Test', from_name: 'Test', invalid: true }.to_json,
+        'body' => { message: 'Test', from_name: 'Test', invalid: true }.to_json
       },
       context: {}
     )

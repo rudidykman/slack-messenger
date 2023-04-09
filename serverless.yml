@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: ruby2.7
   profile: ${env:DEPLOYMENT_AWS_PROFILE}
-  region: us-east-1
+  region: af-south-1
 
 functions:
   authorize:

@@ -28,7 +28,7 @@ def validate_request_body(body)
   body.each_key do |key|
     invalid_fields.push(key) unless allowed_fields.include?(key)
   end
-  if invalid_fields.length > 0
-    raise InvalidRequestError, "Request body contains invalid fields: #{invalid_fields}."
-  end
+  return unless invalid_fields.length.positive?
+
+  raise InvalidRequestError, "Request body contains invalid fields: #{invalid_fields}."
 end

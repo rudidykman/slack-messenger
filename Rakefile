@@ -13,7 +13,7 @@ task :invoke do
   payload = File.open('payload.json').read
   response = post_notifications(
     event: {
-      'body' => payload,
+      'body' => payload
     },
     context: {}
   )

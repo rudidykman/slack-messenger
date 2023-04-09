@@ -12,6 +12,7 @@ class SlackApi
 
   def send_message(message:, username:, channel_id: ENV['SLACK_CHANNEL_ID'])
     return puts 'Sending simulated Slack message...' if ENV['RUBY_ENV'] == 'test'
+
     post(
       endpoint: 'chat.postMessage',
       body: {
