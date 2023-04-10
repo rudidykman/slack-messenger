@@ -10,6 +10,7 @@ def authorize(event:, context:)
 end
 
 def post_notifications(event:, context:)
+  puts "Received event: #{event}"
   body = JSON.parse(event['body'] || '{}')
   validate_request_body(body)
 
