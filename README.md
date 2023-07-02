@@ -1,6 +1,6 @@
 # slack-messenger
 
-A small Serverless AWS Lambda app (written in Ruby) that sends spam notifications to a Slack channel.
+A small Serverless AWS Lambda app (written in Ruby) that sends notifications to a Slack channel.
 
 <img width="846" alt="Example of Slack message sent by this app" src="https://user-images.githubusercontent.com/43446888/222897225-f94303f0-3c3a-479f-939f-b825d42d3063.png">
 
